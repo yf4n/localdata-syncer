@@ -79,7 +79,7 @@ func loadConfig(filePath string) {
 	if srcDir == "" || dstDir == "" {
 		log.Printf("Error: src-dir or dst-dir are empty")
 	}
-	
+
 	log.Printf("Config loaded successfully")
 }
 

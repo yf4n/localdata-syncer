@@ -16,7 +16,7 @@ GO_IMAGE := golang:1.25
 OUTPUT_DIR := ./bin
 
 # 构建标志
-BUILD_FLAGS := -v
+BUILD_FLAGS :=
 
 # 运行标志
 RUN_FLAGS :=
@@ -29,7 +29,7 @@ all: build
 
 # 目标：构建
 .PHONY: build
-build:
+build: clean
 	@echo "Building $(APP_NAME)..."
 	@mkdir -p $(OUTPUT_DIR)
 	@$(GO) build $(BUILD_FLAGS) -o $(OUTPUT_DIR)/$(APP_NAME) .
@@ -37,7 +37,7 @@ build:
 
 # 目标：使用Docker构建
 .PHONY: docker-build
-docker-build:
+docker-build: clean
 	@echo "Building $(APP_NAME) using Docker..."
 	@mkdir -p $(OUTPUT_DIR)
 	@$(DOCKER) run --rm -v "$(PWD):/app" -w "/app" $(GO_IMAGE) go build $(BUILD_FLAGS) -o $(OUTPUT_DIR)/$(APP_NAME) .
